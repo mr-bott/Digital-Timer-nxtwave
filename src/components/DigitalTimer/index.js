@@ -63,6 +63,12 @@ class DigitalTimer extends Component {
 
   render() {
     const {minutes, isTimerOn} = this.state
+    const url = isTimerOn
+      ? 'https://assets.ccbp.in/frontend/react-js/pause-icon-img.png'
+      : 'https://assets.ccbp.in/frontend/react-js/play-icon-img.png'
+    const alt = isTimerOn ? 'pause icon' : 'play icon'
+    const clic = isTimerOn ? this.pause : this.start
+    const btntext = isTimerOn ? 'Pause' : 'Start'
     return (
       <div className="main">
         <div>
@@ -72,36 +78,19 @@ class DigitalTimer extends Component {
         <div className="time-container">
           <div className="img-container">
             <div className="time-runner">
-              <p className="time">{this.getElapsedSecondsInTimeFormat()}</p>
+              <h1 className="time">{this.getElapsedSecondsInTimeFormat()}</h1>
               <p className=" para set">{isTimerOn ? 'Running' : 'Paused'}</p>
             </div>
           </div>
 
           <div className="button-container">
             <div className="row">
-              {isTimerOn ? (
-                <div className="side">
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/play-icon-img.png"
-                    alt="play icon"
-                    className="img"
-                  />
-                  <button type="button" onClick={this.pause} className="btn">
-                    Pause
-                  </button>
-                </div>
-              ) : (
-                <div className="side">
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/pause-icon-img.png"
-                    alt="pause icon"
-                    className="img"
-                  />
-                  <button type="button" onClick={this.start} className="btn">
-                    Start
-                  </button>
-                </div>
-              )}
+              <div className="side">
+                <img src={url} alt={alt} className="img" />
+                <button type="button" onClick={clic} className="btn">
+                  {btntext}
+                </button>
+              </div>
 
               <div className="side">
                 <img
